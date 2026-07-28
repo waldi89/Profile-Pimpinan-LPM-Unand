@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Pimpinan LPM - Universitas Andalas</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        unand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#006837', // Unand Primary Green
+                            900: '#004d28',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 glass-header border-b border-slate-200/80 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Unand & LPM Logo / Title -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-xl bg-unand-800 text-white flex items-center justify-center font-bold text-xl shadow-md shadow-unand-800/20 ring-2 ring-unand-600/30">
+                        <i class="fa-solid font-bold fa-award text-yellow-400 text-2xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-unand-800 block">Universitas Andalas</span>
+                        <h1 class="text-lg sm:text-xl font-extrabold text-slate-900 leading-tight">Lembaga Penjaminan Mutu (LPM)</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Banner Section -->
+    <section class="relative bg-gradient-to-br from-unand-900 via-unand-800 to-emerald-900 text-white py-16 lg:py-20 overflow-hidden">
+        <!-- Decorative Background Pattern -->
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="absolute -right-20 -top-20 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl"></div>
+        <div class="absolute -left-20 -bottom-20 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+            <div class="max-w-3xl space-y-4">
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                    Profil Pimpinan <br class="hidden sm:inline"><span class="text-yellow-400">Lembaga Penjaminan Mutu</span>
+                </h1>
+                <p class="text-slate-200 text-base sm:text-lg font-light leading-relaxed">
+                    Mengenal jajaran akademisi, pakar, dan praktisi terbaik Universitas Andalas yang berdedikasi mengawal keunggulan mutu pendidikan, riset, dan pengabdian masyarakat.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12" id="profil-pimpinan">
+        
+        <!-- Controls Header: Search & Category Filter -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10 pb-6 border-b border-slate-200">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Direktori Pimpinan LPM</h2>
+                <p class="text-sm text-slate-500 mt-1">Klik pada kartu profil untuk melihat detail lengkap riwayat dan karya.</p>
+            </div>
+
+            <!-- Search Box -->
+            <div class="relative w-full sm:w-72">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                <input type="text" id="search-input" placeholder="Cari nama, keahlian..." class="w-full pl-9 pr-4 py-2.5 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-unand-800 focus:border-transparent shadow-sm">
+            </div>
+        </div>
+
+        <!-- Leader Profile Cards Grid -->
+        <div id="leaders-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+            <!-- Profile cards will be dynamically populated by JavaScript -->
+        </div>
+
+        <!-- No Results State -->
+        <div id="no-results" class="hidden text-center py-16 bg-white rounded-2xl border border-dashed border-slate-300">
+            <i class="fa-solid fa-user-slash text-4xl text-slate-300 mb-3 block"></i>
+            <h3 class="text-lg font-bold text-slate-700">Tidak ada data pimpinan yang cocok</h3>
+            <p class="text-sm text-slate-500 mt-1">Coba gunakan kata kunci pencarian atau filter lain.</p>
+        </div>
+
+    </main>
+
+    <!-- Leader Detail Interactive Modal -->
+    <div id="leader-modal" class="fixed inset-0 z-50 hidden bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+        <div class="relative bg-white rounded-3xl shadow-2xl max-w-3xl w-full my-8 overflow-hidden transform transition-all border border-slate-100 flex flex-col max-h-[90vh]">
+            
+            <!-- Modal Header / Photo Overlay -->
+            <div class="relative bg-gradient-to-r from-unand-900 to-unand-800 text-white p-6 sm:p-8">
+                <button onclick="closeLeaderModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/20 hover:bg-black/40 text-white flex items-center justify-center transition-all focus:outline-none">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+
+                <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+                    <img id="modal-image" src="" alt="" class="w-28 h-28 sm:w-36 sm:h-36 rounded-2xl object-cover object-top border-4 border-white/20 shadow-xl bg-slate-800 flex-shrink-0">
+                    <div class="text-center sm:text-left space-y-2">
+                        <span id="modal-role" class="inline-block px-3 py-1 bg-yellow-400 text-slate-900 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm"></span>
+                        <h3 id="modal-name" class="text-xl sm:text-2xl font-extrabold leading-tight text-white"></h3>
+                        <p id="modal-academic" class="text-xs sm:text-sm text-yellow-200 font-medium"></p>
+                        <div id="modal-tags" class="flex flex-wrap gap-1.5 justify-center sm:justify-start pt-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Content Body (Single Page View without tabs) -->
+            <div class="p-6 sm:p-8 overflow-y-auto custom-scrollbar flex-grow space-y-8 text-sm text-slate-700">
+                
+                <!-- Section 1: Ringkasan & Keahlian -->
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2 text-unand-800 font-bold border-b border-slate-200 pb-2">
+                        <i class="fa-solid fa-user-check text-base"></i>
+                        <h4 class="text-xs sm:text-sm uppercase tracking-wider">Ringkasan & Keahlian Utama</h4>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200/80 space-y-1.5">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block">Bidang Keahlian</span>
+                        <p id="modal-expertise" class="text-sm sm:text-base text-slate-900 font-semibold leading-relaxed"></p>
+                    </div>
+                    <p id="modal-bio-desc" class="leading-relaxed text-slate-600 pt-1 text-xs sm:text-sm"></p>
+                </div>
+
+                <!-- Section 2: Education -->
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2 text-unand-800 font-bold border-b border-slate-200 pb-2">
+                        <i class="fa-solid fa-graduation-cap text-base"></i>
+                        <h4 class="text-xs sm:text-sm uppercase tracking-wider">Pendidikan & Pelatihan</h4>
+                    </div>
+                    <ul id="modal-edu-list" class="space-y-2.5"></ul>
+                </div>
+
+                <!-- Section 3: Experience & QA -->
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2 text-unand-800 font-bold border-b border-slate-200 pb-2">
+                        <i class="fa-solid fa-briefcase text-base"></i>
+                        <h4 class="text-xs sm:text-sm uppercase tracking-wider">Pengalaman Operasional & Penjaminan Mutu</h4>
+                    </div>
+                    <ul id="modal-exp-list" class="space-y-2.5"></ul>
+                </div>
+
+                <!-- Section 4: Works & Publications -->
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2 text-unand-800 font-bold border-b border-slate-200 pb-2">
+                        <i class="fa-solid fa-book-open text-base"></i>
+                        <h4 class="text-xs sm:text-sm uppercase tracking-wider">Karya Ilmiah, Buku & Pengabdian</h4>
+                    </div>
+                    <div id="modal-works-container" class="space-y-3"></div>
+                </div>
+
+            </div>
+
+            <!-- Modal Footer Actions -->
+            <div class="bg-slate-50 px-6 py-4 border-t border-slate-200 flex items-center justify-between">
+                <button onclick="copyLeaderBio()" class="inline-flex items-center px-3.5 py-2 text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-100 transition-colors shadow-sm">
+                    <i class="fa-regular fa-copy mr-2"></i> Salin Ringkasan Profil
+                </button>
+                <button onclick="closeLeaderModal()" class="px-5 py-2 text-xs font-bold text-white bg-unand-800 hover:bg-unand-900 rounded-xl transition-colors shadow-sm">
+                    Tutup
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const leadersData = [
+            {
+                id: 0,
+                name: "Prof. dr. Hardisman, M.HID., Dr.PH.",
+                role: "Ketua LPM",
+                category: "pimpinan",
+                academic: "Guru Besar / Profesor (Fakultas Kedokteran)",
+                expertise: "Kesehatan Masyarakat, Kebijakan Kesehatan, Metodologi Penelitian",
+                image: "hardisman.jpg",
+                fallbackImage: "https://placehold.co/400x500/006837/ffffff?text=Prof.+Hardisman",
+                tags: ["Kesehatan Masyarakat", "Kebijakan Kesehatan", "Metodologi Penelitian"],
+                shortDesc: "Guru Besar Fakultas Kedokteran Unand yang aktif sebagai narasumber, konsultan kebijakan kesehatan, serta penulis produktif karya akademik dan literasi humanisme.",
+                education: [
+                    "<strong>Dokter (dr.):</strong> Fakultas Kedokteran, Universitas Andalas",
+                    "<strong>Magister (M.HID.) & Doktor (Dr.PH.):</strong> Flinders University, Australia",
+                    "<strong>Short Course & Fellowship:</strong> Harvard T.H. Chan School of Public Health (HSPH), Boston, US",
+                    "<strong>SEAOHUN-ILRI Fellow:</strong> Vietnam dan Thailand"
+                ],
+                experience: [
+                    "<strong>Ketua Lembaga Penjaminan Mutu (LPM)</strong> Universitas Andalas (Saat Ini)",
+                    "Mantan <strong>Ketua Program Studi</strong> di lingkungan Universitas Andalas",
+                    "Mantan <strong>Wakil Dekan</strong> Fakultas Kedokteran Universitas Andalas",
+                    "Narasumber & Konsultan Aktif Kebijakan Kesehatan dan Kesehatan Masyarakat untuk Pemerintah Daerah"
+                ],
+                works: [
+                    "Telah menulis lebih dari <strong>25 buku akademik beredar nasional</strong> di bidang kesehatan masyarakat, kebijakan kesehatan, dan metodologi penelitian.",
+                    "Melahirkan karya sastra berupa <strong>novel dan kumpulan puisi</strong> yang memadualkan ilmu pengetahuan dengan nilai humanisme.",
+                    "Memiliki misi hidup menjembatani pengetahuan dengan kebijaksanaan yang membumi serta senantiasa berbuat baik dengan menjalani hidup penuh makna."
+                ]
+            },
+            {
+                id: 1,
+                name: "Dr. Elly Delfia, S.S., M.Hum.",
+                role: "Sekretaris LPM",
+                category: "pimpinan",
+                academic: "Dosen Prodi Sastra Indonesia & S2 Linguistik",
+                expertise: "Linguistik, Analisis Wacana Kritis",
+                image: "elly delfia.jpg",
+                fallbackImage: "https://placehold.co/400x500/006837/ffffff?text=Dr.+Elly+Delfia",
+                tags: ["Linguistik", "Analisis Wacana Kritis", "Sastra Indonesia"],
+                shortDesc: "Pakar Ilmu Linguistik alumni UGM yang berperan aktif memberikan pendampingan teknis dan strategis dalam Audit Mutu Internal, GPM/GKM, serta Akreditasi.",
+                education: [
+                    "<strong>Doktor (S-3):</strong> Ilmu-Ilmu Humaniora, Universitas Gadjah Mada (UGM)"
+                ],
+                experience: [
+                    "<strong>Sekretaris Lembaga Penjaminan Mutu (LPM)</strong> Universitas Andalas",
+                    "Pendampingan Audit Mutu Internal (AMI) perguruan tinggi",
+                    "Pendampingan Gugus Penjaminan Mutu (GPM) dan Gugus Kendali Mutu (GKM) fakultas/prodi",
+                    "Pendampingan Akreditasi Nasional dan Akreditasi Internasional Unand"
+                ],
+                works: [
+                    "<em>Linguistik dalam Bingkai Kekinian</em> (Buku Referensi, 2019)",
+                    "<em>Bahasa Indonesia untuk SMP/MTs</em> (Buku Teks Kemdikbudristek, 2024)",
+                    "<em>Bahasa Indonesia Praktis</em> (Buku Referensi, 2025)",
+                    "<em>Pendekatan Terkini Analisis Wacana dan Analisis Wacana Kritis</em> (Buku Ajar, 2025)"
+                ]
+            },
+            {
+                id: 2,
+                name: "Prof. Ir. Denny Helard, S.T., M.T., Ph.D.",
+                role: "Kabag SPMI LPM",
+                category: "spmi",
+                academic: "Guru Besar / Profesor (Teknik Lingkungan)",
+                expertise: "Pengelolaan Air Limbah, Pemantauan Kualitas Air, Perancangan & Optimalisasi WWTP",
+                image: "denny helard.jpg",
+                fallbackImage: "https://placehold.co/400x500/006837/ffffff?text=Prof.+Denny+Helard",
+                tags: ["Teknik Lingkungan", "WWTP", "Asesor LAM-Teknik", "IABEE", "SPMI"],
+                shortDesc: "Guru Besar Teknik Lingkungan alumni ITB dan Gifu University Jepang, bertindak sebagai Kabag SPMI serta Asesor Nasional LAM-Teknik dan Internasional IABEE.",
+                education: [
+                    "<strong>Sarjana (S.T.):</strong> Teknik Lingkungan, Institut Teknologi Bandung (1998)",
+                    "<strong>Magister (M.T.):</strong> Teknik Lingkungan, Institut Teknologi Bandung (2003)",
+                    "<strong>Doktor (Ph.D.):</strong> Gifu University, Jepang (2013) – Fokus penelitian: Metode inovatif pemantauan kualitas air dan optimalisasi proses WWTP."
+                ],
+                experience: [
+                    "<strong>Kepala Bagian SPMI</strong> (Sistem Penjaminan Mutu Internal) LPM Universitas Andalas",
+                    "<strong>Asesor Nasional:</strong> LAM-Teknik (Lembaga Akreditasi Mandiri Program Studi Teknik)",
+                    "<strong>Asesor Internasional:</strong> IABEE (Indonesia Accreditation Board for Engineering Education)"
+                ],
+                works: [
+                    "Penyusunan standar SPMI, Audit Mutu Internal, dan pendampingan instrumen mutu perguruan tinggi.",
+                    "Riset & Publikasi Internasional bidang pengolahan air limbah dan pemantauan mutu lingkungan.",
+                    "Perancangan, evaluasi, dan optimalisasi sistem Wastewater Treatment Plant (WWTP)."
+                ]
+            },
+            {
+                id: 3,
+                name: "Dr. Devi Analia, S.P., M.Si.",
+                role: "Kabag SPME LPM",
+                category: "spme",
+                academic: "Lektor Kepala (S2 Pembangunan Wilayah & Perdesaan)",
+                expertise: "Perencanaan Pembangunan Perdesaan Berbasis Agribisnis, Modal Sosial & Kelembagaan",
+                image: "devi analia.jpg",
+                fallbackImage: "https://placehold.co/400x500/006837/ffffff?text=Dr.+Devi+Analia",
+                tags: ["Agribisnis", "Pembangunan Perdesaan", "Modal Sosial", "SPME"],
+                shortDesc: "Pakar perencanaan pembangunan perdesaan lulusan IPB yang bertindak sebagai Kabag SPME LPM Unand, memfasilitasi penjaminan mutu eksternal & akreditasi.",
+                education: [
+                    "<strong>Sarjana (S.P.):</strong> Agribisnis, Universitas Andalas (2006)",
+                    "<strong>Magister (M.Si.) & Doktor (Dr.):</strong> Studi Pembangunan (Fokus Perencanaan Pembangunan Wilayah Perdesaan), Institut Pertanian Bogor (IPB)"
+                ],
+                experience: [
+                    "<strong>Kepala Bagian SPME</strong> (Sistem Penjaminan Mutu Eksternal) LPM Universitas Andalas",
+                    "Dosen Program Studi S2 Pembangunan Wilayah dan Perdesaan Universitas Andalas",
+                    "Pengabdi masyarakat dan fasilitator penguatan kapasitas UMKM serta komunitas agribisnis pedesaan"
+                ],
+                works: [
+                    "Pengawalan dan koordinasi akreditasi eksternal (SPME) program studi dan institusi di Unand.",
+                    "Formulasi model pembangunan wilayah yang inklusif, berkelanjutan, dan berkeadilan.",
+                    "Riset dan publikasi bidang kelembagaan agribisnis dan modal sosial masyarakat desa."
+                ]
+            }
+        ];
+
+        let activeCategory = 'all';
+        let activeLeaderIndex = 0;
+
+        function renderLeaders(filterText = '') {
+            const grid = document.getElementById('leaders-grid');
+            const noResults = document.getElementById('no-results');
+            grid.innerHTML = '';
+
+            const filtered = leadersData.filter(leader => {
+                let matchesCategory = false;
+                if (activeCategory === 'all') {
+                    matchesCategory = true;
+                } else if (activeCategory === 'spmi_spme') {
+                    matchesCategory = (leader.category === 'spmi' || leader.category === 'spme');
+                } else {
+                    matchesCategory = (leader.category === activeCategory);
+                }
+
+                const matchesSearch = leader.name.toLowerCase().includes(filterText.toLowerCase()) ||
+                                      leader.expertise.toLowerCase().includes(filterText.toLowerCase()) ||
+                                      leader.role.toLowerCase().includes(filterText.toLowerCase()) ||
+                                      leader.academic.toLowerCase().includes(filterText.toLowerCase());
+                return matchesCategory && matchesSearch;
+            });
+
+            if (filtered.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                filtered.forEach((leader) => {
+                    const card = document.createElement('div');
+                    card.className = "bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden flex flex-col justify-between group hover:-translate-y-1";
+                    
+                    card.innerHTML = `
+                        <div>
+                            <!-- Header Image & Badge Area -->
+                            <div class="relative h-48 bg-gradient-to-r from-unand-900 to-emerald-800 p-4 flex items-end">
+                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:12px_12px]"></div>
+                                
+                                <span class="absolute top-4 left-4 bg-yellow-400 text-slate-900 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow">
+                                    ${leader.role}
+                                </span>
+
+                                <div class="relative z-10 flex items-center space-x-4 w-full">
+                                    <img src="${leader.image}" onerror="this.onerror=null; this.src='${leader.fallbackImage}';" alt="${leader.name}" class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl object-cover object-top border-4 border-white shadow-lg bg-slate-700 flex-shrink-0 transform group-hover:scale-105 transition-transform duration-300">
+                                    <div class="text-white pr-2">
+                                        <span class="text-[11px] text-yellow-300 font-semibold uppercase tracking-wider block">${leader.academic}</span>
+                                        <h3 class="text-base sm:text-lg font-extrabold leading-snug group-hover:text-yellow-300 transition-colors">${leader.name}</h3>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Content Area -->
+                            <div class="p-6 space-y-4">
+                                <div>
+                                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-1">Bidang Keahlian</span>
+                                    <p class="text-xs font-semibold text-slate-800 line-clamp-2">${leader.expertise}</p>
+                                </div>
+
+                                <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
+                                    ${leader.shortDesc}
+                                </p>
+
+                                <!-- Tag Badges -->
+                                <div class="flex flex-wrap gap-1.5 pt-1">
+                                    ${leader.tags.map(tag => `<span class="bg-slate-100 text-slate-600 border border-slate-200 text-[10px] font-medium px-2 py-0.5 rounded-md">#${tag}</span>`).join('')}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card Action Footer -->
+                        <div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between mt-2">
+                            <span class="text-xs font-bold text-unand-800 group-hover:underline inline-flex items-center">
+                                Detail Profil Lengkap
+                            </span>
+                            <button onclick="openLeaderModal(${leader.id})" class="w-9 h-9 rounded-xl bg-unand-800 hover:bg-unand-900 text-white flex items-center justify-center transition-colors shadow-sm">
+                                <i class="fa-solid fa-arrow-right text-xs"></i>
+                            </button>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        }
+
+        function openLeaderModal(id) {
+            activeLeaderIndex = id;
+            const leader = leadersData.find(item => item.id === id);
+            if (!leader) return;
+
+            // Populate Header Data
+            const modalImg = document.getElementById('modal-image');
+            modalImg.src = leader.image;
+            modalImg.onerror = function() { this.src = leader.fallbackImage; };
+
+            document.getElementById('modal-role').innerText = leader.role;
+            document.getElementById('modal-name').innerText = leader.name;
+            document.getElementById('modal-academic').innerText = leader.academic;
+            
+            // Render Tags
+            const tagsContainer = document.getElementById('modal-tags');
+            tagsContainer.innerHTML = leader.tags.map(t => `<span class="bg-white/20 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full backdrop-blur-sm">#${t}</span>`).join('');
+
+            // Overview Tab
+            document.getElementById('modal-expertise').innerText = leader.expertise;
+            document.getElementById('modal-bio-desc').innerText = leader.shortDesc;
+
+            // Education Tab
+            const eduList = document.getElementById('modal-edu-list');
+            eduList.innerHTML = leader.education.map(item => `
+                <li class="flex items-start space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200/60">
+                    <i class="fa-solid fa-graduation-cap text-unand-800 text-sm mt-0.5"></i>
+                    <span class="text-xs text-slate-700 leading-relaxed">${item}</span>
+                </li>
+            `).join('');
+
+            // Experience Tab
+            const expList = document.getElementById('modal-exp-list');
+            expList.innerHTML = leader.experience.map(item => `
+                <li class="flex items-start space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200/60">
+                    <i class="fa-solid fa-circle-check text-emerald-600 text-sm mt-0.5"></i>
+                    <span class="text-xs text-slate-700 leading-relaxed">${item}</span>
+                </li>
+            `).join('');
+
+            // Works Tab
+            const worksContainer = document.getElementById('modal-works-container');
+            worksContainer.innerHTML = leader.works.map(item => `
+                <div class="p-3.5 bg-amber-50/50 border border-amber-200/60 rounded-xl flex items-start space-x-3">
+                    <i class="fa-solid fa-book text-amber-600 text-sm mt-0.5"></i>
+                    <p class="text-xs text-slate-700 leading-relaxed">${item}</p>
+                </div>
+            `).join('');
+
+            // Show Modal
+            document.getElementById('leader-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLeaderModal() {
+            document.getElementById('leader-modal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function copyLeaderBio() {
+            const leader = leadersData.find(item => item.id === activeLeaderIndex);
+            if (!leader) return;
+
+            const bioText = `${leader.name}\n${leader.role} - Universitas Andalas\nJabatan: ${leader.academic}\nKeahlian: ${leader.expertise}\n\nRingkasan:\n${leader.shortDesc}`;
+
+            // Create temporary textarea for copying
+            const tempInput = document.createElement('textarea');
+            tempInput.value = bioText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            // Notification Feedback
+            alert(`Profil ringkas ${leader.name} berhasil disalin ke clipboard!`);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Initial Render
+            renderLeaders();
+
+            // Search Input Event
+            const searchInput = document.getElementById('search-input');
+            searchInput.addEventListener('input', (e) => {
+                renderLeaders(e.target.value);
+            });
+
+            // Close modal on click outside
+            const modal = document.getElementById('leader-modal');
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeLeaderModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
