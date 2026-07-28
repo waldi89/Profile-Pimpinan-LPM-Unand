@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil Pimpinan LPM - Universitas Andalas</title>
-    <!-- Tailwind CSS -->
+    
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome Icons -->
+    
+    <!-- Font Awesome Icons CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter -->
+    
+    <!-- Google Fonts Inter & Plus Jakarta Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <script>
         tailwind.config = {
@@ -21,6 +24,7 @@
                         unand: {
                             50: '#f0fdf4',
                             100: '#dcfce7',
+                            200: '#bbf7d0',
                             600: '#16a34a',
                             700: '#15803d',
                             800: '#006837', // Unand Primary Green
@@ -39,83 +43,79 @@
             }
         }
     </script>
+    
     <style>
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 6px;
+        /* Sembunyikan scrollbar untuk Chrome, Safari, dan Opera */
+        ::-webkit-scrollbar {
+            display: none;
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 8px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+        /* Sembunyikan scrollbar untuk Firefox, IE, dan Edge */
+        html, body, div {
+            -ms-overflow-style: none;  /* IE dan Edge */
+            scrollbar-width: none;  /* Firefox */
         }
         .glass-header {
-            background: rgba(255, 255, 255, 0.92);
+            background: rgba(255, 255, 255, 0.94);
             backdrop-filter: blur(12px);
+        }
+        @keyframes toastIn {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        @keyframes toastOut {
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(100%); opacity: 0; }
+        }
+        .animate-toast-in {
+            animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-toast-out {
+            animation: toastOut 0.2s cubic-bezier(0.7, 0, 0.84, 0) forwards;
         }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-40 glass-header border-b border-slate-200/80 shadow-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-               
-                     </div>
-            </div>
-        </div>
-    </header>
-
     <!-- Hero Banner Section -->
-    <section class="relative bg-gradient-to-br from-unand-900 via-unand-800 to-emerald-900 text-white py-16 lg:py-20 overflow-hidden">
+    <section class="relative bg-gradient-to-br from-unand-900 via-unand-800 to-emerald-900 text-white py-14 lg:py-18 overflow-hidden">
         <!-- Decorative Background Pattern -->
         <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:16px_16px]"></div>
         <div class="absolute -right-20 -top-20 w-96 h-96 bg-yellow-500/20 rounded-full blur-3xl"></div>
         <div class="absolute -left-20 -bottom-20 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl"></div>
 
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
-            <div class="max-w-3xl space-y-4">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl">
                 <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
                     Profil Pimpinan <br class="hidden sm:inline"><span class="text-yellow-400">Lembaga Penjaminan Mutu</span>
                 </h1>
-                
             </div>
         </div>
     </section>
 
     <!-- Main Content Container -->
-    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12" id="profil-pimpinan">
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-10" id="profil-pimpinan">
         
-        <!-- Controls Header: Search & Category Filter -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-10 pb-6 border-b border-slate-200">
+        <!-- Section Header -->
+        <div class="mb-8 pb-6 border-b border-slate-200">
             <div>
                 <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Direktori Pimpinan LPM</h2>
-                <p class="text-sm text-slate-500 mt-1">Klik pada kartu profil untuk melihat detail lengkap riwayat dan karya.</p>
-            </div>
-
-            <!-- Search Box -->
-            <div class="relative w-full sm:w-72">
-                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-                <input type="text" id="search-input" placeholder="Cari nama, keahlian..." class="w-full pl-9 pr-4 py-2.5 bg-white border border-slate-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-unand-800 focus:border-transparent shadow-sm">
+                <p class="text-xs sm:text-sm text-slate-500 mt-1">Klik pada kartu profil untuk melihat detail lengkap riwayat, keahlian, dan karya.</p>
             </div>
         </div>
 
         <!-- Leader Profile Cards Grid -->
         <div id="leaders-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            <!-- Profile cards will be dynamically populated by JavaScript -->
+            <!-- Dynamically loaded profile cards -->
         </div>
 
         <!-- No Results State -->
-        <div id="no-results" class="hidden text-center py-16 bg-white rounded-2xl border border-dashed border-slate-300">
+        <div id="no-results" class="hidden text-center py-16 bg-white rounded-2xl border border-dashed border-slate-300 my-6">
             <i class="fa-solid fa-user-slash text-4xl text-slate-300 mb-3 block"></i>
-            <h3 class="text-lg font-bold text-slate-700">Tidak ada data pimpinan yang cocok</h3>
-            <p class="text-sm text-slate-500 mt-1">Coba gunakan kata kunci pencarian atau filter lain.</p>
+            <h3 class="text-base font-bold text-slate-700">Tidak ada data pimpinan yang cocok</h3>
+            <p class="text-xs text-slate-500 mt-1">Coba gunakan kata kunci pencarian lain atau setel ulang filter.</p>
+            <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold rounded-xl transition-colors">
+                <i class="fa-solid fa-rotate-left mr-1.5"></i> Reset Filter
+            </button>
         </div>
 
     </main>
@@ -125,7 +125,7 @@
         <div class="relative bg-white rounded-3xl shadow-2xl max-w-3xl w-full my-8 overflow-hidden transform transition-all border border-slate-100 flex flex-col max-h-[90vh]">
             
             <!-- Modal Header / Photo Overlay -->
-            <div class="relative bg-gradient-to-r from-unand-900 to-unand-800 text-white p-6 sm:p-8">
+            <div class="relative bg-gradient-to-r from-unand-900 via-unand-800 to-emerald-900 text-white p-6 sm:p-8">
                 <button onclick="closeLeaderModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/20 hover:bg-black/40 text-white flex items-center justify-center transition-all focus:outline-none">
                     <i class="fa-solid fa-xmark text-lg"></i>
                 </button>
@@ -141,7 +141,7 @@
                 </div>
             </div>
 
-            <!-- Modal Content Body (Single Page View without tabs) -->
+            <!-- Modal Content Body -->
             <div class="p-6 sm:p-8 overflow-y-auto custom-scrollbar flex-grow space-y-8 text-sm text-slate-700">
                 
                 <!-- Section 1: Ringkasan & Keahlian -->
@@ -188,8 +188,8 @@
 
             <!-- Modal Footer Actions -->
             <div class="bg-slate-50 px-6 py-4 border-t border-slate-200 flex items-center justify-between">
-                <button onclick="copyLeaderBio()" class="inline-flex items-center px-3.5 py-2 text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-100 transition-colors shadow-sm">
-                    <i class="fa-regular fa-copy mr-2"></i> Salin Ringkasan Profil
+                <button onclick="copyLeaderBio()" class="inline-flex items-center px-3.5 py-2 text-xs font-bold text-slate-700 bg-white border border-slate-300 rounded-xl hover:bg-slate-100 transition-colors shadow-sm active:scale-95">
+                    <i class="fa-regular fa-copy mr-2 text-slate-500"></i> Salin Ringkasan Profil
                 </button>
                 <button onclick="closeLeaderModal()" class="px-5 py-2 text-xs font-bold text-white bg-unand-800 hover:bg-unand-900 rounded-xl transition-colors shadow-sm">
                     Tutup
@@ -199,7 +199,11 @@
         </div>
     </div>
 
+    <!-- Custom Toast Container (Replaces alert()) -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
+
     <script>
+        // LPM Leadership Dataset
         const leadersData = [
             {
                 id: 0,
@@ -210,6 +214,7 @@
                 expertise: "Kesehatan Masyarakat, Kebijakan Kesehatan, Metodologi Penelitian",
                 image: "hardisman.jpg",
                 fallbackImage: "https://lpm.unand.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-06-14-at-10.44.09_a6c27bac-1-150x150.jpg",
+                avatarFallback: "https://placehold.co/300x300/006837/ffffff?text=Prof+Hardisman",
                 tags: ["Kesehatan Masyarakat", "Kebijakan Kesehatan", "Metodologi Penelitian"],
                 shortDesc: "Guru Besar Fakultas Kedokteran Unand yang aktif sebagai narasumber, konsultan kebijakan kesehatan, serta penulis produktif karya akademik dan literasi humanisme.",
                 education: [
@@ -219,14 +224,14 @@
                     "<strong>SEAOHUN-ILRI Fellow:</strong> Vietnam dan Thailand"
                 ],
                 experience: [
-                    "<strong>Ketua Lembaga Penjaminan Mutu (LPM)</strong> Universitas Andalas (Saat Ini)",
+                    "<strong>Ketua Lembaga Penjaminan Mutu (LPM)</strong> Universitas Andalas",
                     "Mantan <strong>Ketua Program Studi</strong> di lingkungan Universitas Andalas",
                     "Mantan <strong>Wakil Dekan</strong> Fakultas Kedokteran Universitas Andalas",
                     "Narasumber & Konsultan Aktif Kebijakan Kesehatan dan Kesehatan Masyarakat untuk Pemerintah Daerah"
                 ],
                 works: [
                     "Telah menulis lebih dari <strong>25 buku akademik beredar nasional</strong> di bidang kesehatan masyarakat, kebijakan kesehatan, dan metodologi penelitian.",
-                    "Melahirkan karya sastra berupa <strong>novel dan kumpulan puisi</strong> yang memadualkan ilmu pengetahuan dengan nilai humanisme.",
+                    "Melahirkan karya sastra berupa <strong>novel dan kumpulan puisi</strong> yang memadukan ilmu pengetahuan dengan nilai humanisme.",
                     "Memiliki misi hidup menjembatani pengetahuan dengan kebijaksanaan yang membumi serta senantiasa berbuat baik dengan menjalani hidup penuh makna."
                 ]
             },
@@ -239,6 +244,7 @@
                 expertise: "Linguistik, Analisis Wacana Kritis",
                 image: "elly delfia.jpg",
                 fallbackImage: "https://lpm.unand.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-02-23-at-14.40.17_3df56426-150x150.jpg",
+                avatarFallback: "https://placehold.co/300x300/006837/ffffff?text=Dr+Elly+Delfia",
                 tags: ["Linguistik", "Analisis Wacana Kritis", "Sastra Indonesia"],
                 shortDesc: "Pakar Ilmu Linguistik alumni UGM yang berperan aktif memberikan pendampingan teknis dan strategis dalam Audit Mutu Internal, GPM/GKM, serta Akreditasi.",
                 education: [
@@ -266,6 +272,7 @@
                 expertise: "Pengelolaan Air Limbah, Pemantauan Kualitas Air, Perancangan & Optimalisasi WWTP",
                 image: "denny helard.jpg",
                 fallbackImage: "https://lpm.unand.ac.id/wp-content/uploads/2024/12/WhatsApp-Image-2024-03-04-at-13.48.14_98695728-150x150.jpg",
+                avatarFallback: "https://placehold.co/300x300/006837/ffffff?text=Prof+Denny+Helard",
                 tags: ["Teknik Lingkungan", "WWTP", "Asesor LAM-Teknik", "IABEE", "SPMI"],
                 shortDesc: "Guru Besar Teknik Lingkungan alumni ITB dan Gifu University Jepang, bertindak sebagai Kabag SPMI serta Asesor Nasional LAM-Teknik dan Internasional IABEE.",
                 education: [
@@ -293,6 +300,7 @@
                 expertise: "Perencanaan Pembangunan Perdesaan Berbasis Agribisnis, Modal Sosial & Kelembagaan",
                 image: "devi analia.jpg",
                 fallbackImage: "https://lpm.unand.ac.id/wp-content/uploads/2024/12/Devi-Analia-150x150.jpg",
+                avatarFallback: "https://placehold.co/300x300/006837/ffffff?text=Dr+Devi+Analia",
                 tags: ["Agribisnis", "Pembangunan Perdesaan", "Modal Sosial", "SPME"],
                 shortDesc: "Pakar perencanaan pembangunan perdesaan lulusan IPB yang bertindak sebagai Kabag SPME LPM Unand, memfasilitasi penjaminan mutu eksternal & akreditasi.",
                 education: [
@@ -330,10 +338,11 @@
                     matchesCategory = (leader.category === activeCategory);
                 }
 
-                const matchesSearch = leader.name.toLowerCase().includes(filterText.toLowerCase()) ||
-                                      leader.expertise.toLowerCase().includes(filterText.toLowerCase()) ||
-                                      leader.role.toLowerCase().includes(filterText.toLowerCase()) ||
-                                      leader.academic.toLowerCase().includes(filterText.toLowerCase());
+                const searchLower = filterText.toLowerCase();
+                const matchesSearch = leader.name.toLowerCase().includes(searchLower) ||
+                                      leader.expertise.toLowerCase().includes(searchLower) ||
+                                      leader.role.toLowerCase().includes(searchLower) ||
+                                      leader.academic.toLowerCase().includes(searchLower);
                 return matchesCategory && matchesSearch;
             });
 
@@ -348,7 +357,7 @@
                     card.innerHTML = `
                         <div>
                             <!-- Header Image & Badge Area -->
-                            <div class="relative h-48 bg-gradient-to-r from-unand-900 to-emerald-800 p-4 flex items-end">
+                            <div class="relative h-48 bg-gradient-to-r from-unand-900 via-unand-800 to-emerald-800 p-4 flex items-end">
                                 <div class="absolute inset-0 opacity-20 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:12px_12px]"></div>
                                 
                                 <span class="absolute top-4 left-4 bg-yellow-400 text-slate-900 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow">
@@ -356,7 +365,7 @@
                                 </span>
 
                                 <div class="relative z-10 flex items-center space-x-4 w-full">
-                                    <img src="${leader.image}" onerror="this.onerror=null; this.src='${leader.fallbackImage}';" alt="${leader.name}" class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl object-cover object-top border-4 border-white shadow-lg bg-slate-700 flex-shrink-0 transform group-hover:scale-105 transition-transform duration-300">
+                                    <img src="${leader.image}" onerror="this.onerror=null; this.src='${leader.fallbackImage}'; this.onerror=function(){this.src='${leader.avatarFallback}'};" alt="${leader.name}" class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl object-cover object-top border-4 border-white shadow-lg bg-slate-700 flex-shrink-0 transform group-hover:scale-105 transition-transform duration-300">
                                     <div class="text-white pr-2">
                                         <span class="text-[11px] text-yellow-300 font-semibold uppercase tracking-wider block">${leader.academic}</span>
                                         <h3 class="text-base sm:text-lg font-extrabold leading-snug group-hover:text-yellow-300 transition-colors">${leader.name}</h3>
@@ -384,10 +393,10 @@
 
                         <!-- Card Action Footer -->
                         <div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between mt-2">
-                            <span class="text-xs font-bold text-unand-800 group-hover:underline inline-flex items-center">
+                            <span class="text-xs font-bold text-unand-800 group-hover:underline inline-flex items-center cursor-pointer" onclick="openLeaderModal(${leader.id})">
                                 Detail Profil Lengkap
                             </span>
-                            <button onclick="openLeaderModal(${leader.id})" class="w-9 h-9 rounded-xl bg-unand-800 hover:bg-unand-900 text-white flex items-center justify-center transition-colors shadow-sm">
+                            <button onclick="openLeaderModal(${leader.id})" aria-label="Lihat Detail Profil ${leader.name}" class="w-9 h-9 rounded-xl bg-unand-800 hover:bg-unand-900 text-white flex items-center justify-center transition-colors shadow-sm focus:outline-none">
                                 <i class="fa-solid fa-arrow-right text-xs"></i>
                             </button>
                         </div>
@@ -397,47 +406,74 @@
             }
         }
 
+        function setCategoryFilter(category) {
+            activeCategory = category;
+            
+            // Update Tab Styles
+            ['all', 'pimpinan', 'spmi_spme'].forEach(cat => {
+                const btn = document.getElementById(`tab-${cat}`);
+                if (cat === category) {
+                    btn.className = "flex-1 sm:flex-none px-3.5 py-2 rounded-lg transition-all bg-white text-unand-800 shadow-sm font-bold";
+                } else {
+                    btn.className = "flex-1 sm:flex-none px-3.5 py-2 rounded-lg transition-all hover:text-slate-900 text-slate-600 font-medium";
+                }
+            });
+
+            const searchInput = document.getElementById('search-input');
+            renderLeaders(searchInput ? searchInput.value : '');
+        }
+
+        function resetFilters() {
+            document.getElementById('search-input').value = '';
+            setCategoryFilter('all');
+        }
+
         function openLeaderModal(id) {
             activeLeaderIndex = id;
             const leader = leadersData.find(item => item.id === id);
             if (!leader) return;
 
-            // Populate Header Data
+            // Header Elements
             const modalImg = document.getElementById('modal-image');
             modalImg.src = leader.image;
-            modalImg.onerror = function() { this.src = leader.fallbackImage; };
+            modalImg.onerror = function() {
+                this.onerror = function() {
+                    this.src = leader.avatarFallback;
+                };
+                this.src = leader.fallbackImage;
+            };
 
             document.getElementById('modal-role').innerText = leader.role;
             document.getElementById('modal-name').innerText = leader.name;
             document.getElementById('modal-academic').innerText = leader.academic;
             
-            // Render Tags
+            // Tag Badges
             const tagsContainer = document.getElementById('modal-tags');
             tagsContainer.innerHTML = leader.tags.map(t => `<span class="bg-white/20 text-white text-[10px] font-semibold px-2 py-0.5 rounded-full backdrop-blur-sm">#${t}</span>`).join('');
 
-            // Overview Tab
+            // Overview Section
             document.getElementById('modal-expertise').innerText = leader.expertise;
             document.getElementById('modal-bio-desc').innerText = leader.shortDesc;
 
-            // Education Tab
+            // Education Section
             const eduList = document.getElementById('modal-edu-list');
             eduList.innerHTML = leader.education.map(item => `
-                <li class="flex items-start space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200/60">
+                <li class="flex items-start space-x-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200/60">
                     <i class="fa-solid fa-graduation-cap text-unand-800 text-sm mt-0.5"></i>
                     <span class="text-xs text-slate-700 leading-relaxed">${item}</span>
                 </li>
             `).join('');
 
-            // Experience Tab
+            // Experience Section
             const expList = document.getElementById('modal-exp-list');
             expList.innerHTML = leader.experience.map(item => `
-                <li class="flex items-start space-x-2 bg-slate-50 p-3 rounded-xl border border-slate-200/60">
+                <li class="flex items-start space-x-2.5 bg-slate-50 p-3 rounded-xl border border-slate-200/60">
                     <i class="fa-solid fa-circle-check text-emerald-600 text-sm mt-0.5"></i>
                     <span class="text-xs text-slate-700 leading-relaxed">${item}</span>
                 </li>
             `).join('');
 
-            // Works Tab
+            // Works Section
             const worksContainer = document.getElementById('modal-works-container');
             worksContainer.innerHTML = leader.works.map(item => `
                 <div class="p-3.5 bg-amber-50/50 border border-amber-200/60 rounded-xl flex items-start space-x-3">
@@ -446,48 +482,91 @@
                 </div>
             `).join('');
 
-            // Show Modal
-            document.getElementById('leader-modal').classList.remove('hidden');
+            // Display Modal
+            const modal = document.getElementById('leader-modal');
+            modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
         function closeLeaderModal() {
-            document.getElementById('leader-modal').classList.add('hidden');
-            document.body.style.overflow = 'hidden';
+            const modal = document.getElementById('leader-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
         }
 
         function copyLeaderBio() {
             const leader = leadersData.find(item => item.id === activeLeaderIndex);
             if (!leader) return;
 
-            const bioText = `${leader.name}\n${leader.role} - Universitas Andalas\nJabatan: ${leader.academic}\nKeahlian: ${leader.expertise}\n\nRingkasan:\n${leader.shortDesc}`;
+            const bioText = `${leader.name}\n${leader.role} - Universitas Andalas\nJabatan/Fakultas: ${leader.academic}\nKeahlian: ${leader.expertise}\n\nRingkasan Profil:\n${leader.shortDesc}`;
 
-            // Create temporary textarea for copying
+            // Temporary textarea fallback for iFrame compatibility
             const tempInput = document.createElement('textarea');
             tempInput.value = bioText;
             document.body.appendChild(tempInput);
             tempInput.select();
-            document.execCommand('copy');
+            
+            try {
+                document.execCommand('copy');
+                showToast(`Profil ${leader.name} berhasil disalin!`, 'success');
+            } catch (err) {
+                showToast('Gagal menyalin profil.', 'error');
+            }
+            
             document.body.removeChild(tempInput);
-
-            // Notification Feedback
-            alert(`Profil ringkas ${leader.name} berhasil disalin ke clipboard!`);
         }
 
+        // Custom Toast Notification Function (Replaces alert())
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            const bgColor = type === 'success' ? 'bg-slate-900 text-white border-emerald-500' : 'bg-slate-900 text-white border-red-500';
+            const icon = type === 'success' ? 'fa-circle-check text-emerald-400' : 'fa-circle-exclamation text-red-400';
+
+            toast.className = `pointer-events-auto flex items-center space-x-3 px-4 py-3 rounded-xl shadow-xl border-l-4 ${bgColor} text-xs font-semibold animate-toast-in`;
+            toast.innerHTML = `
+                <i class="fa-solid ${icon} text-sm"></i>
+                <span>${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('animate-toast-in');
+                toast.classList.add('animate-toast-out');
+                setTimeout(() => {
+                    if (toast.parentNode) {
+                        toast.parentNode.removeChild(toast);
+                    }
+                }, 200);
+            }, 3000);
+        }
+
+        // Event Listeners Initialization
         document.addEventListener('DOMContentLoaded', () => {
-            // Initial Render
             renderLeaders();
 
-            // Search Input Event
             const searchInput = document.getElementById('search-input');
-            searchInput.addEventListener('input', (e) => {
-                renderLeaders(e.target.value);
-            });
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    renderLeaders(e.target.value);
+                });
+            }
 
-            // Close modal on click outside
+            // Close Modal on Backdrop Click
             const modal = document.getElementById('leader-modal');
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeLeaderModal();
+                    }
+                });
+            }
+
+            // Close Modal on Escape Key
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
                     closeLeaderModal();
                 }
             });
