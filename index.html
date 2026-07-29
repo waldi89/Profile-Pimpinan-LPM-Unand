@@ -95,14 +95,6 @@
     <!-- Main Content Container -->
     <main class="flex-grow max-w-[1400px] mx-auto w-full px-4 sm:px-6 lg:px-8 py-10" id="profil-pimpinan">
         
-        <!-- Section Header -->
-        <div class="mb-8 pb-6 border-b border-slate-200">
-            <div>
-                <h2 class="text-2xl font-bold text-slate-900 tracking-tight">Direktori Pimpinan LPM</h2>
-                <p class="text-xs sm:text-sm text-slate-500 mt-1">Klik pada kartu profil untuk melihat detail lengkap riwayat, keahlian, dan karya.</p>
-            </div>
-        </div>
-
         <!-- Leader Profile Cards Grid (4 Columns Horizontal on Desktop) -->
         <div id="leaders-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <!-- Dynamically loaded profile cards -->
@@ -131,11 +123,11 @@
                 </button>
 
                 <div class="flex flex-col sm:flex-row items-center sm:items-start gap-5">
-                    <img id="modal-image" src="" alt="" class="w-32 h-40 rounded-xl object-cover object-top border-2 border-white/20 shadow-xl bg-slate-800 flex-shrink-0">
+                    <img id="modal-image" src="" alt="" class="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover object-top border-4 border-white/30 shadow-xl bg-slate-800 flex-shrink-0">
                     <div class="text-center sm:text-left space-y-2 overflow-hidden w-full">
                         <span id="modal-role" class="inline-block px-3 py-0.5 bg-yellow-400 text-slate-900 rounded-full text-[11px] font-extrabold uppercase tracking-wider shadow-sm"></span>
-                        <h3 id="modal-name" class="text-base sm:text-lg font-extrabold text-white truncate" title=""></h3>
-                        <p id="modal-academic" class="text-xs text-yellow-200 font-medium truncate"></p>
+                        <h3 id="modal-name" class="text-base sm:text-lg font-extrabold text-white leading-snug break-words"></h3>
+                        <p id="modal-academic" class="text-xs text-yellow-200 font-medium leading-relaxed break-words"></p>
                     </div>
                 </div>
             </div>
@@ -164,7 +156,7 @@
         </div>
     </div>
 
-    <!-- Custom Toast Container (Replaces alert()) -->
+    <!-- Custom Toast Container -->
     <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col space-y-2 pointer-events-none"></div>
 
     <script>
@@ -214,7 +206,7 @@
                 shortDesc: "Guru Besar Teknik Lingkungan alumni ITB dan Gifu University Jepang, bertindak sebagai Kabag SPMI serta Asesor Nasional LAM-Teknik dan Internasional IABEE.",
                 narration: [
                     "Prof. Ir. Denny Helard, S.T., M.T., Ph.D. adalah Guru Besar di bidang Teknik Lingkungan yang diakui sebagai pakar dalam pengelolaan air limbah serta pemantauan kualitas air. Keahlian utamanya mencakup perancangan dan optimalisasi <em>wastewater treatment plant</em> (WWTP). Beliau menempuh pendidikan sarjana (S.T. 1998) dan magister (M.T. 2003) di Teknik Lingkungan Institut Teknologi Bandung (ITB), sebelum meraih gelar doktor (Ph.D.) dari Gifu University, Jepang, pada tahun 2013. Fokus penelitian doktoralnya adalah pengembangan metode inovatif untuk pemantauan kualitas air serta peningkatan proses dan mutu pengolahan air limbah.",
-                    "Sebagai akademisi, dalam bidang penjaminan mutu pendidikan perguruan tinggi, Prof. Denny saat ini adalah Kabag SPMI di Lembaga Penjaminan Mutu Universitas Andalas. Dia juga salah satu asesor nasional untuk LAM-Teknik dan Lembaga Akreditasi Internasional IABEE (Indonesia Accreditation Board for Engineering Education)."
+                    "Sebagai akademisi, dalam bidang penjaminan mutu pendidikan perguruan tinggi, Prof. Denny saat ini adalah Kabag SPME di Lembaga Penjaminan Mutu Universitas Andalas. Dia juga salah satu asesor nasional untuk LAM-Teknik dan Lembaga Akreditasi Internasional IABEE (Indonesia Accreditation Board for Engineering Education)."
                 ]
             },
             {
@@ -242,34 +234,24 @@
 
             leadersData.forEach((leader) => {
                 const card = document.createElement('div');
-                card.className = "bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col justify-between group p-4";
+                card.className = "bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col justify-between group p-3.5 sm:p-4";
                 
                 card.innerHTML = `
                     <div class="space-y-3">
-                        <!-- Rectangular Photo Container -->
-                        <div class="relative w-full h-52 rounded-xl overflow-hidden bg-slate-100 border border-slate-200">
-                            <span class="absolute top-2.5 left-2.5 z-10 bg-yellow-400 text-slate-900 text-[10px] font-extrabold px-2.5 py-0.5 rounded-md uppercase tracking-wider shadow">
+                        <!-- Circular Photo Container with Role Centered Above -->
+                        <div class="flex flex-col items-center justify-center pt-1 pb-1">
+                            <span class="mb-2 bg-yellow-400 text-slate-900 text-[10px] font-extrabold px-3 py-0.5 rounded-md uppercase tracking-wider shadow text-center">
                                 ${leader.role}
                             </span>
-                            <img src="${leader.image}" onerror="this.onerror=null; this.src='${leader.fallbackImage}'; this.onerror=function(){this.src='${leader.avatarFallback}'};" alt="${leader.name}" class="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-300">
-                        </div>
-
-                        <!-- 1 Compact Line Name & Academic Title -->
-                        <div>
-                            <h3 class="text-xs sm:text-sm font-extrabold text-slate-900 truncate" title="${leader.name}">${leader.name}</h3>
-                            <p class="text-[11px] font-semibold text-unand-800 truncate" title="${leader.academic}">${leader.academic}</p>
-                        </div>
-
-                        <!-- Expertise & Short Bio -->
-                        <div class="space-y-2 border-t border-slate-100 pt-2">
-                            <div>
-                                <span class="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-0.5">Bidang Keahlian</span>
-                                <p class="text-xs font-semibold text-slate-700 line-clamp-1">${leader.expertise}</p>
+                            <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-full overflow-hidden border-4 border-unand-800/20 shadow-md bg-slate-100 flex-shrink-0">
+                                <img src="${leader.image}" onerror="this.onerror=null; this.src='${leader.fallbackImage}'; this.onerror=function(){this.src='${leader.avatarFallback}'};" alt="${leader.name}" class="w-full h-full object-cover object-top transform group-hover:scale-105 transition-transform duration-300">
                             </div>
+                        </div>
 
-                            <p class="text-xs text-slate-600 leading-relaxed line-clamp-3">
-                                ${leader.shortDesc}
-                            </p>
+                        <!-- Single Line Compact Name & Academic Title -->
+                        <div class="space-y-1 text-center">
+                            <h3 class="text-[9px] sm:text-[10px] lg:text-[10.5px] font-extrabold tracking-tight text-slate-900 leading-tight whitespace-nowrap overflow-hidden text-ellipsis" title="${leader.name}">${leader.name}</h3>
+                            <p class="text-[8.5px] sm:text-[9.5px] lg:text-[10px] font-semibold tracking-tight text-unand-800 leading-tight whitespace-nowrap overflow-hidden text-ellipsis" title="${leader.academic}">${leader.academic}</p>
                         </div>
                     </div>
 
@@ -305,7 +287,6 @@
             document.getElementById('modal-role').innerText = leader.role;
             const nameElem = document.getElementById('modal-name');
             nameElem.innerText = leader.name;
-            nameElem.title = leader.name;
             document.getElementById('modal-academic').innerText = leader.academic;
 
             // Populate Paragraph Narration
